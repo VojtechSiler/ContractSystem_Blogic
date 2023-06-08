@@ -1,0 +1,37 @@
+﻿@model ContractSystem_Blogic.Models.Consultant
+
+<div class="form-group">
+    <label asp-for="FirstName">First Name</label>
+    <input asp-for="FirstName" class="form-control" />
+    <span asp-validation-for="FirstName" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="LastName">Last Name</label>
+    <input asp-for="LastName" class="form-control" />
+    <span asp-validation-for="LastName" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Email">Email</label>
+    <input placeholder="&commat;" asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="PhoneNumber">Phone Number</label>
+    <input placeholder="+420" asp-for="PhoneNumber" class="form-control" />
+    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="IdentificationNumber">Identification Number</label>
+    <input asp-for="IdentificationNumber" class="form-control" />
+    <span asp-validation-for="IdentificationNumber" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="ProfilePicture">Picture</label>
+    <input type="file" name="image" asp-for="ProfilePicture" class="form-control" />
+    <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+</div>

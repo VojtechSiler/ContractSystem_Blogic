@@ -1,0 +1,102 @@
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ContractSystem_Blogic</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ContractSystem_Blogic.styles.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f6d73d5695.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css">
+
+    <style>
+        .navbar {
+            
+            border-bottom: 4px solid orangered;
+        }
+        .navbar-nav .nav-item .nav-link:hover {
+            background-color: orangered;
+            color:white !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    <header style="margin-bottom:20px;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img style="width:30px;height:40px;" src="/images/blogic_logo.png" alt="Blogic Contracts" class="navbar-logo">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Client" asp-action="Index" class="nav-link text-dark">Clients</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Consultant" asp-action="Index" class="nav-link text-dark">Consultants</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Contract" asp-action="Index" class="nav-link text-dark">Contracts</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Institution" asp-action="Index" class="nav-link text-dark">Institutions</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div class="ml-auto">
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                Logged in as: @User.Identity.Name <a style="margin-left:10px;" asp-controller="Account" asp-action="Logout" class="btn btn-secondary">Log Out</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Register" class="nav-link text-dark" >Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Account" asp-action="Login" class="nav-link text-dark">Log In</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

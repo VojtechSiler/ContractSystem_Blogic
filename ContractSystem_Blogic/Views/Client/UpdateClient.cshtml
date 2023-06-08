@@ -1,0 +1,33 @@
+﻿@model ContractSystem_Blogic.Models.Client
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<br />
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h2 style="color:orangered">Edit Client</h2>
+
+            @if (ViewData["CreateFlag"] != null)
+            {
+                <div style="padding:5px; margin-bottom:10px;" class="alert-danger view-data">
+                    @ViewData["CreateFlag"]
+                </div>
+            }
+
+            <form asp-action="UpdateClient" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                
+                @Html.Partial("_CUClientForm")
+
+                <div style="margin-top:10px;" class="form-group text-center">
+                    <button type="submit" class="btn btn-orange">Update</button>
+                    <a asp-action="ClientDetail" asp-route-clientId="@Model.Id" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model List<ContractSystem_Blogic.Models.Institution>
+
+<h2 style="color:orangered">Institution Database</h2>
+
+<div class="row justify-content-between">
+    <div class="col-lg-6 my-2">
+        
+    </div>
+    <div class="col-lg-4 d-flex flex-row-reverse my-2">
+        <a asp-action="CreateInstitution" class="btn btn-orange col-5"><i class="fa-solid fa-plus"></i> New Institution</a>
+    </div>
+</div>
+
+
+<div>
+    <table class="table table-striped border">
+        <tr class="table-responsive">
+            <th>Institution Name</th>
+            <th>Contracts</th>  
+            <th></th>
+        </tr>
+        @foreach (var institution in Model)
+        {
+            <tr class="tr-clients">
+                <td>
+                    @institution.Name
+                </td>
+                <td>
+                    @institution.Contracts.Count
+                </td>
+                <td style="text-align:end;">
+                    <a asp-action="UpdateInstitution" asp-route-institutionId="@institution.Id" class="btn btn-orange">Edit</a>
+                    <a asp-action="DeleteInstitution" asp-route-institutionId="@institution.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

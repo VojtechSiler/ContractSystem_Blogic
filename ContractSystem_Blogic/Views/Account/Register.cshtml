@@ -1,0 +1,44 @@
+﻿@model ContractSystem_Blogic.DTOs.RegisterDTO
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+<div class="container-login">
+    <div class="child-login">
+        <img style="width:70px;height:100px; margin-bottom:20px;" src="/images/blogic_logo.png" />
+        <h1 style="margin-bottom:40px;">Register</h1>
+
+        @if (ViewData["RegisterFlag"] != null)
+        {
+            <div style="padding:5px; margin-bottom:10px;" class="alert-danger view-data">
+                @ViewData["RegisterFlag"]
+            </div>
+        }
+
+        <form method="post" asp-action="Register">
+            <div class="form-group">
+                <label for="Username">Username:</label>
+                <input asp-for="Username" class="form-control" />
+                <span asp-validation-for="Username" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <input asp-for="Password" type="password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label for="PasswordRepeat">Confirm password:</label>
+                <input asp-for="PasswordRepeat" type="password" class="form-control" />
+                <span asp-validation-for="PasswordRepeat" class="text-danger"></span>
+            </div>
+            <button style="margin-top:20px;" class="btn btn-orange" type="submit">Submit</button>
+        </form>
+    </div>
+
+</div>
+

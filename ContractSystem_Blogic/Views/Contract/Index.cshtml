@@ -1,0 +1,58 @@
+﻿@model List<ContractSystem_Blogic.Models.Contract>
+
+<h2 style="color:orangered">Contract Database</h2>
+
+<div class="row justify-content-between">
+    <div class="col-lg-6 my-2">
+        @Html.Partial("_SearchPartial")
+    </div>
+    <div class="col-lg-4 d-flex flex-row-reverse my-2">
+        <a asp-action="CreateContract" class="btn btn-orange col-5"><i class="fa-solid fa-plus"></i> New Contract</a>
+        <a asp-action="ExportContractsToCSV" class="btn btn-orange-two col-3"><i class="fa-solid fa-file-export"></i> Export</a>
+    </div>
+</div>
+
+
+<div>
+    <table class="table table-striped border">
+        <tr class="table-responsive">
+            <th>Registration Number</th>
+            <th>Institution</th>
+            <th>Client</th>
+            <th>Contract Manager</th>
+            
+
+        </tr>
+        @foreach (var contract in Model)
+        {
+            <tr class="tr-clients" onclick="location.href='@Url.Action("ContractDetail", "Contract", new { contractId = contract.Id })';">
+                <td>
+                    @contract.RegistrationNumber
+                </td>
+                <td>
+                    @contract.Institution.Name
+                </td>
+                <td>
+                    @contract.Client.FirstName @contract.Client.LastName
+                </td>
+                <td>
+                    @contract.ContractManager.FirstName @contract.ContractManager.LastName
+                </td>
+                
+            </tr>
+        }
+    </table>
+</div>
+
+<script>
+    var rows = document.querySelectorAll("tr");
+
+    rows.forEach(function (row) {
+        row.addEventListener("click", function () {
+            var url = this.getAttribute("data-url");
+            if (url) {
+                location.href = url;
+            }
+        });
+    });
+</script>

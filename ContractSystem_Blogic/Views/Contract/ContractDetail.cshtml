@@ -1,0 +1,77 @@
+﻿@model ContractSystem_Blogic.Models.Contract
+
+<div class="row">
+
+    <div class="column" style="flex-basis:33%;">
+        <img style="width:250px;height:250px;" src="@Model.ContractManager.ProfilePicture" alt="Person Image">
+        <a asp-controller="Consultant" asp-action="ConsultantDetail" asp-route-consultantId="@Model.ContractManagerId" style="text-decoration:none;"><h2>@Model.ContractManager.FirstName @Model.ContractManager.LastName</h2></a>
+        <p>Contract Manager</p>
+        <p>Email: @Model.ContractManager.Email</p>
+        <p>Phone Number: @Model.ContractManager.PhoneNumber</p>
+    </div>
+
+    <div class="column" style="flex-basis:33%;">
+        <img style="width:250px;height:250px;" src="@Model.Client.ProfilePicture" alt="Person Image">
+        <a asp-controller="Client" asp-action="ClientDetail" asp-route-clientId="@Model.ClientId" style="text-decoration:none;"><h2>@Model.Client.FirstName @Model.Client.LastName</h2></a>
+        <p>Client</p>
+        <p>Email: @Model.Client.Email</p>
+        <p>Identification Number: @Model.Client.IdentificationNumber</p>
+    </div>
+
+    <div class="column" style="flex-basis:33%;">
+        <h2>Contract Details</h2>
+        <p>Registration Number: @Model.RegistrationNumber</p>
+        <p>Institution: @Model.Institution.Name</p>
+        <p>Closure Date: @Model.ClosureDate.Day/@Model.ClosureDate.Month/@Model.ClosureDate.Year</p>
+        <p>Start Date: @Model.StartDate.Day/@Model.StartDate.Month/@Model.StartDate.Year</p>
+        <p>End Date: @Model.EndDate.Day/@Model.EndDate.Month/@Model.EndDate.Year</p>
+        
+        @if(Model.Consultants.Count > 1)
+        {
+            <div class="column">
+                <h4 style="color:orangered;">Contract consultants: </h4>
+                @foreach (var consultant in Model.Consultants)
+                {
+                    if (consultant == Model.ContractManager)
+                    {
+                        continue;
+                    }
+                    <p>
+                        <a asp-controller="Consultant" asp-action="ConsultantDetail" asp-route-consultantId="@consultant.Id" style="text-decoration:none;color:orangered;">@consultant.FirstName @consultant.LastName</a>
+                    </p>
+                    <p style="margin-top:-15px;">
+                        @consultant.PhoneNumber
+                    </p>
+                }
+            </div>
+        }
+        <div style="margin-top:10px;" class="form-group text-center">
+            <a asp-action="UpdateContract" asp-route-contractId="@Model.Id" class="btn btn-orange">Edit</a>
+            <a data-toggle="modal" data-target="#exampleModal" class="btn btn-danger">Delete</a>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete contract: @Model.RegistrationNumber</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to permanently delete this contract?</p>
+            </div>
+            <div class="modal-footer">
+                <a asp-action="DeleteContract" asp-route-contractId="@Model.Id" class="btn btn-orange">Delete</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
